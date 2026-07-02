@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Prediction Result</h1>
+      <p class="subtitle">EfficientNetV2-S + MSAM</p>
+    </header>
+
+    <div class="result-grid">
+      <div class="card">
+        <h2>Uploaded Image</h2>
+        <img class="preview-img" src="{{ url_for('uploaded_file', filename=uploaded_image) }}" alt="Uploaded skin image">
+      </div>
+
+      <div class="card">
+        <h2>Top Predictions</h2>
+        <ul class="prediction-list">
+          {% for r in top_results %}
+          <li>
+            <div class="pred-row">
+              <span class="pred-label">{{ r.label }}</span>
+              <span class="pred-conf">{{ "%.2f"|format(r.confidence) }}%</span>
+            </div>
+            <div class="bar-bg">
+              <div class="bar-fill" style="width: {{ r.confidence }}%;"></div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Predicted Condition: {{ top_prediction.label }}</h2>
+      <p class="confidence-tag">Confidence: {{ "%.2f"|format(top_prediction.confidence) }}%</p>
+
+      {% if clinical_info %}
+      <div class="clinical-info">
+        <h3>Description</h3>
+        <p>{{ clinical_info.description }}</p>
+
+        <h3>Common Symptoms</h3>
+        <p>{{ clinical_info.symptoms }}</p>
+
+        <h3>Possible Causes</h3>
+        <p>{{ clinical_info.causes }}</p>
+
+        <h3>Treatment</h3>
+        <p>{{ clinical_info.treatment }}</p>
+
+        <h3>Advice</h3>
+        <p>{{ clinical_info.advice }}</p>
+      </div>
+      {% else %}
+      <p>Clinical information unavailable for this class.</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h2>Grad-CAM Explainability</h2>
+      <p>Visualizing which regions of the image influenced the prediction, before and after the MSAM attention block.</p>
+      <div class="gradcam-grid">
+        <div>
+          <h3>Before MSAM</h3>
+          <img class="gradcam-img" src="{{ url_for('static', filename=gradcam_before) }}" alt="Grad-CAM before MSAM">
+        </div>
+        <div>
+          <h3>After MSAM</h3>
+          <img class="gradcam-img" src="{{ url_for('static', filename=gradcam_after) }}" alt="Grad-CAM after MSAM">
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      {{ disclaimer }}
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn back-btn">Analyze Another Image</a>
+  </div>
+</body>
+</html>

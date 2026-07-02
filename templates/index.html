@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Skin Disease Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI-Assisted Skin Disease Prediction</h1>
+      <p class="subtitle">EfficientNetV2-S + Multi-Scale Attention Module (MSAM)</p>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card">
+      <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+        <label for="image" class="upload-label">
+          <span>Click to choose a skin image</span>
+          <small>PNG or JPG, up to 8 MB</small>
+        </label>
+        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg" required
+               onchange="document.getElementById('filename').innerText = this.files[0].name">
+        <p id="filename" class="filename"></p>
+
+        <button type="submit" class="btn">Analyze Image</button>
+      </form>
+    </div>
+
+    <div class="disclaimer-box">
+      <strong>Disclaimer:</strong> This tool is intended for research and educational
+      purposes only. It is not a substitute for professional medical diagnosis.
+      Always consult a qualified dermatologist for any skin concerns.
+    </div>
+  </div>
+</body>
+</html>

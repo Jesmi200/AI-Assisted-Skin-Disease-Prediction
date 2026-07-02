@@ -1,0 +1,16 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+model/*.keras
+*.keras
+
+static/uploads/*
+!static/uploads/.gitkeep
+
+static/gradcam_before/*
+!static/gradcam_before/.gitkeep
+
+static/gradcam_after/*
+!static/gradcam_after/.gitkeep

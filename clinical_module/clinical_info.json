@@ -1,0 +1,163 @@
+{
+  "Acne and Rosacea Photos": {
+    "description": "A group of chronic inflammatory skin conditions affecting hair follicles and facial blood vessels.",
+    "symptoms": "Pimples, blackheads, whiteheads, facial redness, visible blood vessels.",
+    "causes": "Hormonal changes, excess oil production, bacteria, genetics, environmental triggers.",
+    "treatment": "Topical retinoids, benzoyl peroxide, antibiotics, oral isotretinoin (severe acne), lifestyle modifications.",
+    "advice": "Consult a dermatologist if lesions are severe, painful, or leave scars."
+  },
+  "Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions": {
+    "description": "Precancerous or cancerous skin lesions usually caused by prolonged sun exposure.",
+    "symptoms": "Rough scaly patches, non-healing sores, pearly bumps, irregular lesions.",
+    "causes": "Chronic ultraviolet (UV) radiation exposure.",
+    "treatment": "Cryotherapy, topical medications, surgical excision, Mohs surgery depending on diagnosis.",
+    "advice": "Immediate dermatological evaluation is recommended."
+  },
+  "Atopic Dermatitis Photos": {
+    "description": "A chronic inflammatory skin disease commonly known as eczema.",
+    "symptoms": "Dry skin, itching, redness, skin thickening.",
+    "causes": "Genetic predisposition, immune dysfunction, environmental allergens.",
+    "treatment": "Moisturizers, topical corticosteroids, calcineurin inhibitors, antihistamines.",
+    "advice": "Avoid scratching and identify possible triggers."
+  },
+  "Bullous Disease Photos": {
+    "description": "A group of disorders characterized by fluid-filled blisters.",
+    "symptoms": "Large blisters, painful skin, erosions.",
+    "causes": "Autoimmune disorders, infections, medications.",
+    "treatment": "Corticosteroids, immunosuppressive drugs, wound care.",
+    "advice": "Prompt medical evaluation is advised."
+  },
+  "Cellulitis Impetigo and other Bacterial Infections": {
+    "description": "Bacterial infections affecting the skin and underlying tissues.",
+    "symptoms": "Redness, swelling, warmth, pain, pus-filled lesions.",
+    "causes": "Staphylococcus aureus, Streptococcus species.",
+    "treatment": "Oral or intravenous antibiotics depending on severity.",
+    "advice": "Seek medical attention promptly to prevent complications."
+  },
+  "Eczema Photos": {
+    "description": "Inflammatory skin disorder causing itching and irritation.",
+    "symptoms": "Dry, itchy, cracked, inflamed skin.",
+    "causes": "Allergens, irritants, immune dysfunction, genetics.",
+    "treatment": "Moisturizers, topical steroids, avoidance of irritants.",
+    "advice": "Keep skin moisturized and avoid harsh soaps."
+  },
+  "Exanthems and Drug Eruptions": {
+    "description": "Skin rashes caused by infections or adverse drug reactions.",
+    "symptoms": "Widespread rash, redness, itching, fever.",
+    "causes": "Viruses, antibiotics, anticonvulsants and other medications.",
+    "treatment": "Discontinue offending drug under medical supervision, antihistamines, corticosteroids.",
+    "advice": "Seek urgent care if rash is accompanied by breathing difficulty or blistering."
+  },
+  "Hair Loss Photos Alopecia and other Hair Diseases": {
+    "description": "Conditions causing hair thinning or hair loss.",
+    "symptoms": "Patchy hair loss, diffuse thinning, scalp changes.",
+    "causes": "Autoimmune disorders, hormonal imbalance, genetics, stress, nutritional deficiencies.",
+    "treatment": "Minoxidil, finasteride (where appropriate), corticosteroids, nutritional correction.",
+    "advice": "Consult a dermatologist if hair loss is sudden or extensive."
+  },
+  "Herpes HPV and other STDs Photos": {
+    "description": "Skin manifestations of sexually transmitted viral infections.",
+    "symptoms": "Blisters, ulcers, warts, itching.",
+    "causes": "Herpes simplex virus, Human papillomavirus and other pathogens.",
+    "treatment": "Antiviral medications or wart removal depending on the condition.",
+    "advice": "Consult a healthcare professional for diagnosis and treatment."
+  },
+  "Light Diseases and Disorders of Pigmentation": {
+    "description": "Disorders affecting skin pigmentation.",
+    "symptoms": "White patches, dark patches, uneven skin color.",
+    "causes": "Autoimmune disorders, sun exposure, inflammation, genetics.",
+    "treatment": "Topical creams, phototherapy, sun protection.",
+    "advice": "Avoid excessive sun exposure and use sunscreen."
+  },
+  "Lupus and other Connective Tissue diseases": {
+    "description": "Autoimmune diseases affecting skin and connective tissues.",
+    "symptoms": "Facial rash, photosensitivity, joint pain.",
+    "causes": "Immune system abnormalities.",
+    "treatment": "Immunosuppressants, corticosteroids, hydroxychloroquine.",
+    "advice": "Regular follow-up with a rheumatologist or dermatologist is recommended."
+  },
+  "Melanoma Skin Cancer Nevi and Moles": {
+    "description": "Pigmented skin lesions ranging from benign moles to malignant melanoma.",
+    "symptoms": "Changing mole, asymmetry, irregular borders, color variation.",
+    "causes": "UV exposure, genetic factors.",
+    "treatment": "Surgical removal and oncology referral if melanoma is confirmed.",
+    "advice": "Immediate dermatological assessment is essential."
+  },
+  "Nail Fungus and other Nail Disease": {
+    "description": "Diseases affecting fingernails and toenails.",
+    "symptoms": "Thickened nails, discoloration, brittleness.",
+    "causes": "Fungal infections, trauma, psoriasis.",
+    "treatment": "Antifungal medications, nail care.",
+    "advice": "Keep nails clean and dry."
+  },
+  "Poison Ivy Photos and other Contact Dermatitis": {
+    "description": "Skin inflammation caused by contact with allergens or irritants.",
+    "symptoms": "Red itchy rash, blisters, swelling.",
+    "causes": "Poison ivy, chemicals, cosmetics, metals.",
+    "treatment": "Topical steroids, antihistamines, avoidance of trigger.",
+    "advice": "Wash exposed skin promptly after contact."
+  },
+  "Psoriasis pictures Lichen Planus and related diseases": {
+    "description": "Chronic inflammatory skin disorders characterized by scaling plaques or purple itchy lesions.",
+    "symptoms": "Scaly plaques, itching, redness.",
+    "causes": "Autoimmune dysfunction, genetics.",
+    "treatment": "Topical corticosteroids, vitamin D analogues, biologic therapy.",
+    "advice": "Avoid known triggers and follow dermatologist recommendations."
+  },
+  "Scabies Lyme Disease and other Infestations and Bites": {
+    "description": "Skin diseases caused by parasites, insect bites, or tick-borne infections.",
+    "symptoms": "Intense itching, burrows, bite marks, rash.",
+    "causes": "Mites, ticks, insects.",
+    "treatment": "Permethrin, ivermectin, antibiotics for Lyme disease when indicated.",
+    "advice": "Treat close contacts if scabies is confirmed."
+  },
+  "Seborrheic Keratoses and other Benign Tumors": {
+    "description": "Common non-cancerous skin growths.",
+    "symptoms": "Raised brown or black lesions with a waxy appearance.",
+    "causes": "Age-related skin changes, genetics.",
+    "treatment": "Usually unnecessary unless symptomatic; cryotherapy or removal if needed.",
+    "advice": "Seek evaluation if lesions change rapidly."
+  },
+  "Systemic Disease": {
+    "description": "Skin manifestations associated with underlying systemic illnesses.",
+    "symptoms": "Variable rash, ulcers, discoloration depending on the disease.",
+    "causes": "Internal medical conditions such as diabetes, autoimmune diseases, or infections.",
+    "treatment": "Treat the underlying condition.",
+    "advice": "Medical evaluation is recommended."
+  },
+  "Tinea Ringworm Candidiasis and other Fungal Infections": {
+    "description": "Superficial fungal infections affecting skin, nails, or mucous membranes.",
+    "symptoms": "Ring-shaped rash, scaling, itching, redness.",
+    "causes": "Dermatophytes, Candida species.",
+    "treatment": "Topical or oral antifungal medications.",
+    "advice": "Keep affected areas clean and dry."
+  },
+  "Urticaria Hives": {
+    "description": "Raised itchy welts caused by allergic or non-allergic triggers.",
+    "symptoms": "Itchy wheals, swelling.",
+    "causes": "Allergic reactions, infections, medications, unknown triggers.",
+    "treatment": "Antihistamines, corticosteroids in severe cases.",
+    "advice": "Seek emergency care if swelling affects breathing."
+  },
+  "Vascular Tumors": {
+    "description": "Benign or malignant growths arising from blood vessels.",
+    "symptoms": "Red, purple, or bluish skin lesions.",
+    "causes": "Abnormal blood vessel proliferation.",
+    "treatment": "Observation, laser therapy, surgery depending on type.",
+    "advice": "Consult a dermatologist for diagnosis."
+  },
+  "Vasculitis Photos": {
+    "description": "Inflammation of blood vessels affecting the skin.",
+    "symptoms": "Purple spots, ulcers, painful rash.",
+    "causes": "Autoimmune diseases, infections, medications.",
+    "treatment": "Corticosteroids and immunosuppressive medications.",
+    "advice": "Prompt medical evaluation is recommended."
+  },
+  "Warts Molluscum and other Viral Infections": {
+    "description": "Skin infections caused by viruses.",
+    "symptoms": "Small bumps, rough growths, pearly papules.",
+    "causes": "Human papillomavirus, Molluscum contagiosum virus.",
+    "treatment": "Cryotherapy, salicylic acid, curettage, or observation.",
+    "advice": "Avoid sharing personal items and avoid scratching lesions."
+  }
+}
