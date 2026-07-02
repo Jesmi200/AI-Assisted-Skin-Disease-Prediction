@@ -8,6 +8,8 @@ inference on a single uploaded image.
 import os
 import numpy as np
 import tensorflow as tf
+import io
+from PIL import Image
 
 from utils.gradcam import CUSTOM_OBJECTS
 
@@ -81,6 +83,24 @@ def load_and_preprocess_image(image_path):
 
     return img_batch_0_255, img_0_1
 
+
+def load_and_preprocess_image_from_bytes(image_bytes):
+    """
+    Preprocess an uploaded image from bytes.
+
+    Returns:
+      img_batch_0_255: (1,224,224,3) float32
+      img_0_1: (224,224,3) float32
+    """
+    img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    img = img.resize(IMG_SIZE)
+
+    img_array = np.array(img, dtype=np.float32)
+
+    img_batch_0_255 = np.expand_dims(img_array, axis=0)
+    img_0_1 = img_array / 255.0
+
+    return img_batch_0_255, img_0_1
 
 def predict_top_k(img_batch_0_255, top_k=3):
     """Runs inference and returns the top-k (class_name, confidence%) pairs
