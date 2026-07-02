@@ -5,11 +5,10 @@ Loads the trained EfficientNetV2-S + MSAM (balanced) model and runs
 inference on a single uploaded image.
 """
 
+import io
 import os
 import numpy as np
 import tensorflow as tf
-import io
-from PIL import Image
 
 from utils.gradcam import CUSTOM_OBJECTS
 
@@ -50,6 +49,37 @@ CLASS_NAMES = [
     "Warts Molluscum and other Viral Infections",
 ]
 
+# Clean, human-readable names shown to the user. Keys must exactly match
+# CLASS_NAMES above (the raw dataset folder names, used internally for
+# indexing predictions and looking up clinical_info.json). Edit the VALUES
+# here to change what's displayed — the keys must stay in sync with the
+# dataset's folder names.
+CLASS_DISPLAY_NAMES = {
+    "Acne and Rosacea Photos": "Acne and Rosacea",
+    "Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions": "Actinic Keratosis / Basal Cell Carcinoma",
+    "Atopic Dermatitis Photos": "Atopic Dermatitis (Eczema)",
+    "Bullous Disease Photos": "Bullous Disease",
+    "Cellulitis Impetigo and other Bacterial Infections": "Cellulitis / Impetigo",
+    "Eczema Photos": "Eczema",
+    "Exanthems and Drug Eruptions": "Exanthems / Drug Eruption",
+    "Hair Loss Photos Alopecia and other Hair Diseases": "Alopecia (Hair Loss)",
+    "Herpes HPV and other STDs Photos": "Herpes / HPV",
+    "Light Diseases and Disorders of Pigmentation": "Pigmentation Disorder",
+    "Lupus and other Connective Tissue diseases": "Lupus / Connective Tissue Disease",
+    "Melanoma Skin Cancer Nevi and Moles": "Melanoma / Moles (Nevi)",
+    "Nail Fungus and other Nail Disease": "Nail Fungus",
+    "Poison Ivy Photos and other Contact Dermatitis": "Contact Dermatitis (Poison Ivy)",
+    "Psoriasis pictures Lichen Planus and related diseases": "Psoriasis / Lichen Planus",
+    "Scabies Lyme Disease and other Infestations and Bites": "Scabies / Lyme Disease",
+    "Seborrheic Keratoses and other Benign Tumors": "Seborrheic Keratosis",
+    "Systemic Disease": "Systemic Disease",
+    "Tinea Ringworm Candidiasis and other Fungal Infections": "Tinea / Ringworm (Fungal Infection)",
+    "Urticaria Hives": "Urticaria (Hives)",
+    "Vascular Tumors": "Vascular Tumor",
+    "Vasculitis Photos": "Vasculitis",
+    "Warts Molluscum and other Viral Infections": "Warts / Molluscum",
+}
+
 _model = None
 
 
@@ -86,31 +116,41 @@ def load_and_preprocess_image(image_path):
 
 def load_and_preprocess_image_from_bytes(image_bytes):
     """
-    Preprocess an uploaded image from bytes.
-
-    Returns:
-      img_batch_0_255: (1,224,224,3) float32
-      img_0_1: (224,224,3) float32
+    Same as load_and_preprocess_image, but takes raw image bytes (e.g. from
+    a Flask request.files['image'].read()) instead of a file path — used by
+    the API backend since it never writes the upload to disk.
     """
-    img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    img = img.resize(IMG_SIZE)
+    from PIL import Image
 
-    img_array = np.array(img, dtype=np.float32)
+    img = Image.open(io.BytesIO(image_bytes)).convert("RGB").resize(IMG_SIZE)
+    img_array = np.array(img).astype(np.float32)  # (224, 224, 3), 0-255
 
-    img_batch_0_255 = np.expand_dims(img_array, axis=0)
-    img_0_1 = img_array / 255.0
+    img_batch_0_255 = np.expand_dims(img_array, axis=0).astype(np.float32)
+    img_0_1 = (img_array / 255.0).astype(np.float32)
 
     return img_batch_0_255, img_0_1
 
+
 def predict_top_k(img_batch_0_255, top_k=3):
-    """Runs inference and returns the top-k (class_name, confidence%) pairs
-    plus the full raw prediction vector."""
+    """Runs inference and returns the top-k predictions plus the full raw
+    prediction vector.
+
+    Each result dict has:
+      - "label": clean display name (e.g. "Acne and Rosacea")
+      - "raw_label": the raw dataset folder name (e.g. "Acne and Rosacea Photos"),
+                      used internally to look up clinical_info.json
+      - "confidence": percentage (0-100)
+    """
     model = get_model()
     preds = model.predict(img_batch_0_255, verbose=0)[0]
 
     top_indices = np.argsort(preds)[::-1][:top_k]
     results = [
-        {"label": CLASS_NAMES[i], "confidence": float(preds[i] * 100)}
+        {
+            "label": CLASS_DISPLAY_NAMES.get(CLASS_NAMES[i], CLASS_NAMES[i]),
+            "raw_label": CLASS_NAMES[i],
+            "confidence": float(preds[i] * 100),
+        }
         for i in top_indices
     ]
 
