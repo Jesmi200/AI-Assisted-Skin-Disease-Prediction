@@ -3,6 +3,7 @@
 // Render / Railway URL). No trailing slash.
 // ---------------------------------------------------------------------
 const BACKEND_URL =  "https://jesmi200-skin-disease-api.hf.space";
+
 const form = document.getElementById("upload-form");
 const imageInput = document.getElementById("image");
 const filenameLabel = document.getElementById("filename");
