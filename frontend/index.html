@@ -1,47 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DermaLens: An Intelligent Skin Disease Classification System</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaLens: An Intelligent Skin Disease Classification System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
+
+<div class="container">
+
     <header>
-      <h1>DermaLens: An Intelligent Skin Disease Classification System</h1>
-      <p class="subtitle">EfficientNetV2-S + Multi-Scale Attention Module (MSAM)</p>
+        <h1>DermaLens</h1>
+        <h2>An Intelligent Skin Disease Classification System</h2>
+        <p class="subtitle">
+            EfficientNetV2-S + Multi-Scale Attention Module (MSAM)
+        </p>
     </header>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="flash">
-          {% for message in messages %}
-            <p>{{ message }}</p>
-          {% endfor %}
+    <div id="flash" class="flash" style="display:none;"></div>
+
+    <!-- Upload Card -->
+    <div id="upload-card" class="card">
+
+        <form id="upload-form">
+
+            <label for="image" class="upload-label">
+                <span>📷 Click to choose a skin image</span>
+                <small>PNG or JPG (Max 8 MB)</small>
+            </label>
+
+            <input
+                type="file"
+                id="image"
+                accept=".png,.jpg,.jpeg"
+                hidden
+                required>
+
+            <p id="filename" class="filename"></p>
+
+            <button class="btn" type="submit">
+                Analyze Image
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Loading -->
+
+    <div id="loading" style="display:none;" class="loading">
+
+        <div class="loader"></div>
+
+        <h2>Analyzing Image...</h2>
+
+        <p>
+            Running EfficientNetV2-S inference and generating Grad-CAM
+            visualizations.
+        </p>
+
+    </div>
+
+    <!-- Results -->
+
+    <section id="result-section" style="display:none;">
+
+        <!-- Prediction -->
+
+        <div class="card">
+
+            <h2 id="top-prediction-heading"></h2>
+
+            <div id="confidence-tag" class="confidence-tag"></div>
+
         </div>
-      {% endif %}
-    {% endwith %}
 
-    <div class="card">
-      <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
-        <label for="image" class="upload-label">
-          <span>Click to choose a skin image</span>
-          <small>PNG or JPG, up to 8 MB</small>
-        </label>
-        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg" required
-               onchange="document.getElementById('filename').innerText = this.files[0].name">
-        <p id="filename" class="filename"></p>
+        <!-- Image Preview -->
 
-        <button type="submit" class="btn">Analyze Image</button>
-      </form>
-    </div>
+        <div class="card">
 
-    <div class="disclaimer-box">
-      <strong>Disclaimer:</strong> This tool is intended for research and educational
-      purposes only. It is not a substitute for professional medical diagnosis.
-      Always consult a qualified dermatologist for any skin concerns.
-    </div>
-  </div>
+            <h2>Uploaded Image</h2>
+
+            <img
+                id="preview-img"
+                class="preview-image"
+                alt="Uploaded Image">
+
+        </div>
+
+        <!-- Top Predictions -->
+
+        <div class="card">
+
+            <h2>Top Predictions</h2>
+
+            <ul id="prediction-list"></ul>
+
+        </div>
+
+        <!-- Clinical Information -->
+
+        <div class="card">
+
+            <h2>Clinical Information</h2>
+
+            <div id="clinical-info"></div>
+
+        </div>
+
+        <!-- GradCAM -->
+
+        <div class="card">
+
+            <h2>Explainable AI (Grad-CAM)</h2>
+
+            <div class="gradcam-grid">
+
+                <div>
+
+                    <h3>Before MSAM</h3>
+
+                    <img
+                        id="gradcam-before"
+                        class="gradcam-image"
+                        alt="GradCAM Before">
+
+                </div>
+
+                <div>
+
+                    <h3>After MSAM</h3>
+
+                    <img
+                        id="gradcam-after"
+                        class="gradcam-image"
+                        alt="GradCAM After">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Disclaimer -->
+
+        <div
+            class="disclaimer-box"
+            id="disclaimer-box">
+
+        </div>
+
+        <div style="text-align:center;margin-top:30px;">
+
+            <button
+                id="reset-btn"
+                class="btn">
+
+                Analyze Another Image
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
