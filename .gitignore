@@ -14,3 +14,5 @@ static/gradcam_before/*
 
 static/gradcam_after/*
 !static/gradcam_after/.gitkeep
+
+skin-disease-api/
